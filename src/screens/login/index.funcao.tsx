@@ -6,9 +6,10 @@ export interface LoginProps {}
 export default function LoginFuncaoScreen(props: LoginProps) {
     return (<ImageBackground source={require('./../../../assets/imgs/background.png')} 
                        style={styles.background}>
-                  <View style={styles.container}>
-                    <Text style={styles.logo}>APP - F</Text>
-                </View>
+                
+            <View style={styles.container}>
+                <Text style={styles.logo}>APP - F</Text>
+            </View>
         </ImageBackground>) 
 }
 const styles = StyleSheet.create({
