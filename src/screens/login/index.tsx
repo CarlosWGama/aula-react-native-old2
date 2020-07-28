@@ -4,14 +4,31 @@ import { Input, Button } from 'react-native-elements';
 
 export interface LoginProps {}
 
-export interface LoginState {}
+export interface LoginState {
+    email: string,
+    senha: string
+}
 
 export default class LoginScreen extends React.Component<LoginProps, LoginState> {
-  constructor(props: LoginProps) {
-    super(props);
-    this.state = { 
-    };
-  }
+  
+    public email: string = '';
+    public senha: string = '';
+  
+    constructor(props: LoginProps) {
+        super(props);
+        this.state = {
+            email: '',
+            senha: ''
+        };
+    }
+
+    logar() {
+        if (this.state.email == 'teste@teste.com' && this.state.senha == '123456')
+            console.log('Logado com sucesso');
+        else
+            console.log('Email ou senha incorreta ');
+        
+    }
 
   public render() {
     return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
@@ -23,6 +40,8 @@ export default class LoginScreen extends React.Component<LoginProps, LoginState>
                 <Input placeholder='Digite seu e-mail'  
                     leftIcon={{name:'person', color:'white'}}
                     placeholderTextColor="white"
+                    value={this.state.email}
+                    onChangeText={(email) => this.setState({email})}
                     inputContainerStyle={styles.containerInput}
                     inputStyle={{color:'white'}}
                 />
@@ -30,11 +49,13 @@ export default class LoginScreen extends React.Component<LoginProps, LoginState>
                 <Input placeholder='Digite sua senha' 
                     leftIcon={{name:'lock', color:'white'}}
                     placeholderTextColor="white"
+                    value={this.state.senha}
+                    onChangeText={(senha) => this.setState({senha})}
                     inputContainerStyle={styles.containerInput}
                     inputStyle={{color:'white'}}
-                secureTextEntry={true} />
+                    secureTextEntry />
 
-                <Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} />
+                <Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} onPress={() => this.logar()} />
 
                 <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>
 

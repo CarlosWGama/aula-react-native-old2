@@ -14,3 +14,4 @@ git checkout --force %AULA%
 Aulas disponíveis:
 - git checkout --force inicial
 - git checkout --force interface
+- git checkout --force state

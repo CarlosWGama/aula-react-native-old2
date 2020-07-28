@@ -1,37 +1,53 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, ImageBackground, } from 'react-native';
-import { Button, Input } from 'react-native-elements';
+import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { Button } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 
 export interface LoginProps {}
 
 export default function LoginFuncaoScreen(props: LoginProps) {
-    return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
-            style={styles.background}>
+    const [ email, setEmail ] = React.useState('')
+    const [ senha, setSenha ] = React.useState('')
+   
+    //Função para Logar
+    const logar = () => {
+        if (email == 'teste@teste.com' && senha == '123456')
+            console.log('Logado com sucesso');
+        else
+            console.log('Email ou senha incorreta ');
+    }
 
-        <View style={styles.container}>
-            <Text style={styles.logo}>APP - F</Text>
+     return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
+                style={styles.background}>
 
-            <Input placeholder='Digite seu e-mail'  
-                leftIcon={{name:'person', color:'white'}}
-                placeholderTextColor="white"
-                inputContainerStyle={styles.containerInput}
-                inputStyle={{color:'white'}}
-            />
+            <View style={styles.container}>
+                <Text style={styles.logo}>APP - C</Text>
 
-            <Input placeholder='Digite sua senha' 
-                leftIcon={{name:'lock', color:'white'}}
-                placeholderTextColor="white"
-                inputContainerStyle={styles.containerInput}
-                inputStyle={{color:'white'}}
-            secureTextEntry={true} />
+                <Input placeholder='Digite seu e-mail'  
+                    leftIcon={{name:'person', color:'white'}}
+                    placeholderTextColor="white"
+                    value={email}
+                    onChangeText={(email) => setEmail(email)}
+                    inputContainerStyle={styles.containerInput}
+                    inputStyle={{color:'white'}}
+                />
 
-            <Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} />
+                <Input placeholder='Digite sua senha' 
+                    leftIcon={{name:'lock', color:'white'}}
+                    placeholderTextColor="white"
+                    value={senha}
+                    onChangeText={(senha) => setSenha(senha)}
+                    inputContainerStyle={styles.containerInput}
+                    inputStyle={{color:'white'}}
+                    secureTextEntry />
 
-            <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>
+                <Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} onPress={logar} />
 
-        </View>
+                <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>
 
-    </ImageBackground>)       
+            </View>
+
+            </ImageBackground>)       
 }
     
 const styles = StyleSheet.create({
