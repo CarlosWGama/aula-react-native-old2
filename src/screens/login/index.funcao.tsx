@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, ImageBackground, } from 'react-native';
 import { Button, Input } from 'react-native-elements';
+
 export interface LoginProps {}
 
 export default function LoginFuncaoScreen(props: LoginProps) {
