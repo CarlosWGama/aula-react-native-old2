@@ -18,7 +18,7 @@ export default class LoginScreen extends React.Component<LoginProps, LoginState>
                 style={styles.background}>
 
             <View style={styles.container}>
-                <Text style={styles.logo}>APP</Text>
+                <Text style={styles.logo}>APP - C</Text>
 
                 <Input placeholder='Digite seu e-mail'  
                     leftIcon={{name:'person', color:'white'}}
