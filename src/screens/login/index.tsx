@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { Input, Button } from 'react-native-elements';
+import { InputRound } from './components';
 
 export interface LoginProps {}
 
@@ -33,27 +35,12 @@ export default class LoginScreen extends React.Component<LoginProps, LoginState>
   public render() {
     return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
                 style={styles.background}>
-
+            <StatusBar style="light"/>        
             <View style={styles.container}>
                 <Text style={styles.logo}>APP - C</Text>
 
-                <Input placeholder='Digite seu e-mail'  
-                    leftIcon={{name:'person', color:'white'}}
-                    placeholderTextColor="white"
-                    value={this.state.email}
-                    onChangeText={(email) => this.setState({email})}
-                    inputContainerStyle={styles.containerInput}
-                    inputStyle={{color:'white'}}
-                />
-
-                <Input placeholder='Digite sua senha' 
-                    leftIcon={{name:'lock', color:'white'}}
-                    placeholderTextColor="white"
-                    value={this.state.senha}
-                    onChangeText={(senha) => this.setState({senha})}
-                    inputContainerStyle={styles.containerInput}
-                    inputStyle={{color:'white'}}
-                    secureTextEntry />
+                <InputRound placeholder="Digite seu email" icone="person" onChangeText={(email) => this.setState({email})}/>
+                <InputRound placeholder="Digite sua senha" icone="lock" senha onChangeText={(senha) => this.setState({senha})}/>
 
                 <Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} onPress={() => this.logar()} />
 
@@ -84,12 +71,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 50,
         textAlign: 'center',
-    },
-    containerInput: {
-        backgroundColor: 'rgba(255,255,255,0.3)',
-        borderRadius: 30,
-        padding: 5,
-        marginBottom: 5,
     },
     cadastrar: {
         color: 'white',

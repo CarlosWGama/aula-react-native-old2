@@ -15,3 +15,4 @@ Aulas disponíveis:
 - git checkout --force inicial
 - git checkout --force interface
 - git checkout --force state
+- git checkout --force props
