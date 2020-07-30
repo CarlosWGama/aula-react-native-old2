@@ -1,23 +1,31 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, TextInput, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button } from 'react-native-elements';
 import { InputRound } from './components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigation } from '@react-navigation/native';
 
 export interface LoginProps {}
 
 export default function LoginFuncaoScreen(props: LoginProps) {
 
+    const nav = useNavigation();
+    const [erro, setErro] = useState('');
+
     //Função para Logar
     const logar = async (dados) => {
+        setErro(""); //Limpa o erro
+        
         //Aguarda 1 segundo
         await new Promise(resolve => setTimeout(resolve, 1000));
+        
         if (dados.email == 'teste@teste.com' && dados.senha == '123456')
-            console.log('Logado com sucesso');
+            //nav.navigate('app', {email: dados.email}); //Caso seja uma navegação direta
+            nav.navigate('app', {screen: 'home', params: {email: dados.email}}); //Caso seja uma subnavegação
         else
-            console.log('Email ou senha incorreta ');
+            setErro("Email ou senha incorreta")
     }
 
      return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
@@ -26,7 +34,6 @@ export default function LoginFuncaoScreen(props: LoginProps) {
             
             <View style={styles.container}>
                 <Text style={styles.logo}>APP - F</Text>
-
                 {/* FORMULÁRIO */}
                 <Formik
                     initialValues={{email:'', senha:''}}
@@ -44,6 +51,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                             <InputRound placeholder="Digite sua senha" icone="lock" senha onBlur={handleBlur("senha")} onChangeText={handleChange("senha")}/>
                             {touched.senha && <Text style={styles.erro}>{errors.senha}</Text>}
                             {/* ENVIAR */}
+                            {erro != "" && <Text style={[styles.erroLogin]}>{erro}</Text>}
                             {isSubmitting && <ActivityIndicator size="large"/> }
                             {!isSubmitting &&<Button title="Logar"  buttonStyle={{borderRadius:30}} raised={true} onPress={() => handleSubmit()} />}
                         </View>
@@ -78,6 +86,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     erro: {color:"white", fontSize: 20, textAlign: "right", marginBottom: 10, marginTop: -20},
+    erroLogin: { textAlign: 'center', fontSize: 20, color: 'white'},
     cadastrar: {
         color: 'white',
         fontSize: 20,

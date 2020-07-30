@@ -17,6 +17,7 @@ Aulas disponíveis:
 - git checkout --force state
 - git checkout --force props
 - git checkout --force formulario
+- git checkout --force navigation1
 
 
 --------------------
@@ -26,3 +27,4 @@ Aulas disponíveis:
 * **state** - Aprende a criar varíaveis que mudam de estado na aplicação
 * **props** - Aprende a criar componentes próprios e enviar/receber valores
 * **formulario** - Aprende a usar o Formik + Yup
+* **navigation1** - Adiciona o Stack Navigation do React Navigation
