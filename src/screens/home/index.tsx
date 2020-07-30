@@ -7,12 +7,10 @@ export function HomeScreen (props: any) {
     const route = useRoute();
     
     //@ts-ignore
-    console.log(route.params);
-    let email = route.params?.email; 
+    let {email} = route.params; 
     
     return (
       <View>
-          
          <Text>{email}</Text>
          <Button title="Tarefa" onPress={() => nav.navigate('tarefa')} />
          <Button title="Sair" onPress={() => nav.navigate('login')} />
