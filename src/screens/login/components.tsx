@@ -8,13 +8,16 @@ export interface InputRoundProps {
     placeholder: string;
     senha?: boolean;
     onChangeText(texto:string): void;
+    onBlur?: any;
 }
 
 export function InputRound (props: InputRoundProps) {
     return (
       <View>
          {props.texto && <Text style={styles.texto}>{props.texto}</Text>}
-         <Input placeholder={props.placeholder}  
+         <Input 
+            onBlur={props.onBlur}
+            placeholder={props.placeholder}  
             leftIcon={{name:props.icone, color:'white'}}
             placeholderTextColor="white"
             inputContainerStyle={styles.containerInput}

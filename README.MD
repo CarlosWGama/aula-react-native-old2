@@ -16,3 +16,13 @@ Aulas disponíveis:
 - git checkout --force interface
 - git checkout --force state
 - git checkout --force props
+- git checkout --force formulario
+
+
+--------------------
+#### Sobre aulas
+* **Inicial** - Inicia o projeto do zero
+* **Interface** - Cria tela de login
+* **state** - Aprende a criar varíaveis que mudam de estado na aplicação
+* **props** - Aprende a criar componentes próprios e enviar/receber valores
+* **formulario** - Aprende a usar o Formik + Yup
