@@ -18,6 +18,7 @@ Aulas disponíveis:
 - git checkout --force props
 - git checkout --force formulario
 - git checkout --force navigation1
+- git checkout --force navigation2
 
 
 --------------------
@@ -28,3 +29,4 @@ Aulas disponíveis:
 * **props** - Aprende a criar componentes próprios e enviar/receber valores
 * **formulario** - Aprende a usar o Formik + Yup
 * **navigation1** - Adiciona o Stack Navigation do React Navigation
+* **navigation1** - Adiciona o Drawer e Bottom Navigation do React Navigation

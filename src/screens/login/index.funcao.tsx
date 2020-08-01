@@ -23,7 +23,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
         
         if (dados.email == 'teste@teste.com' && dados.senha == '123456')
             //nav.navigate('app', {email: dados.email}); //Caso seja uma navegação direta
-            nav.navigate('app', {screen: 'home', params: {email: dados.email}}); //Caso seja uma subnavegação
+            nav.navigate('app'); //Caso seja uma subnavegação
         else
             setErro("Email ou senha incorreta")
     }
@@ -36,7 +36,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                 <Text style={styles.logo}>APP - F</Text>
                 {/* FORMULÁRIO */}
                 <Formik
-                    initialValues={{email:'', senha:''}}
+                    initialValues={{email:'teste@teste.com', senha:'123456'}}
                     validationSchema={Yup.object().shape({
                         email: Yup.string().required('Informe o email').email('E-mail não válido'),
                         senha: Yup.string().required('Informe a senha').min(6, 'A senha precisa ter 6 caracteres')
