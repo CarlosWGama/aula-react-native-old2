@@ -7,8 +7,8 @@ const Stack = createStackNavigator();
 
 //Tarefa
 export const NavegacaoTarefa = () => (
-    <Stack.Navigator>
-        <Stack.Screen name="home" component={HomeScreen} options={{headerShown:false}}/>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="home" component={HomeScreen} />
         <Stack.Screen name="tarefa" component={TarefaScreen} />
     </Stack.Navigator>
 )

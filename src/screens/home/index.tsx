@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation, useRoute, DrawerActions } from '@react-navigation/native';
+import { Toolbar } from '../../components/toolbar';
+import { Fab } from '../../components/fab';
 
 export function HomeScreen (props: any) {
     const nav = useNavigation();
@@ -10,11 +12,13 @@ export function HomeScreen (props: any) {
     // let {email} = route.params; 
     
     return (
-      <View>
-        
-         <Button title="Abrir Drawer Menu" onPress={() => nav.dispatch(DrawerActions.openDrawer())} />
-         <Button title="Tarefa" onPress={() => nav.navigate('tarefa')} />
-         <Button title="Sair" onPress={() => nav.navigate('login')} />
+      <View style={style.container}>
+          <Toolbar titulo="Home" menu />
+          <Fab onPress={() => nav.navigate('tarefa')}/>
       </View>
     );
 }
+
+const style = StyleSheet.create({
+  container: {flex: 1}
+})
