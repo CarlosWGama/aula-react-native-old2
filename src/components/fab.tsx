@@ -20,7 +20,7 @@ export function Fab (props: FabProps) {
     let extras: any[] = [];
     extras.push(props.top ? styles.top : styles.bottom);
     extras.push(props.left ? styles.left : styles.right);
-
+    if (props.icon == null) props.icon = "add";
     return (
         <View style={[styles.default, ...extras]}>
             <TouchableOpacity onPress={props.onPress} >
