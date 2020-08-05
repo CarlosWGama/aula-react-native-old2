@@ -20,6 +20,7 @@ Aulas disponíveis:
 - git checkout --force navigation1
 - git checkout --force navigation2
 - git checkout --force toolbar
+- git checkout --force flatlist1
 
 
 --------------------
@@ -31,4 +32,5 @@ Aulas disponíveis:
 * **formulario** - Aprende a usar o Formik + Yup
 * **navigation1** - Adiciona o Stack Navigation do React Navigation
 * **navigation2** - Adiciona o Drawer e Bottom Navigation do React Navigation
-* **Toolbar** - Adicionado nossa toolbar com botão para abrir o menu e o botão voltar
+* **toolbar** - Adicionado nossa toolbar com botão para abrir o menu e o botão voltar
+* **flatlist1** - Iniciando a montar o componente que será usado no flatlist

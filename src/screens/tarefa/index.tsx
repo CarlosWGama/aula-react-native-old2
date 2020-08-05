@@ -8,8 +8,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
-interface TarefaType { id: number, descricao: string, data: string }
+import Tarefa from '../../models/tarefa';
 
 export function TarefaScreen (props: any) {
   const route = useRoute();
@@ -17,9 +16,8 @@ export function TarefaScreen (props: any) {
   
   //recupera a tarefa passada ou inicializa
   //@ts-ignore
-  const tarefa: TarefaType = (route.params?.tarefa == null ? {id: null, descricao: '', data: moment().format('DD/MM/YYYY')} : route.params?.tarefa)
+  const tarefa: Tarefa = (route.params?.tarefa == null ? {id: null, descricao: '', data: moment().format('DD/MM/YYYY')} : route.params?.tarefa)
   const titulo = (tarefa.id == null ? 'Cadastrar ' : 'Editar ') + "Tarefa"; 
-
   //Tirar foto
   const abrirCamera = async () => {
     console.log('Abrir camera')
@@ -48,7 +46,7 @@ export function TarefaScreen (props: any) {
               <View style={{padding:5}}>
                 {/* DESCRIÇÃO */}
                 <Text>Descrição</Text>
-                <Input placeholder="Digite uma descrição" onChangeText={handleChange('descricao')} onBlur={handleBlur("descricao")}></Input>
+                <Input placeholder="Digite uma descrição" value={values.descricao} onChangeText={handleChange('descricao')} onBlur={handleBlur("descricao")}></Input>
                 { touched.descricao && errors.descricao && <Text style={styles.erro}>{errors.descricao}</Text>}
 
                 {/* DATA */}

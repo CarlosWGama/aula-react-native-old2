@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 //Principal
 export const NavegacaoPrincipal = () => (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{animationEnabled: true, headerShown: false}}>
+        <Stack.Navigator screenOptions={{animationEnabled: true, headerShown: false}} initialRouteName="app">
             <Stack.Screen name="login" component={LoginFuncaoScreen} />
             <Stack.Screen name="app" component={NavegacaoDrawer}  
                             options={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS}} />
