@@ -21,6 +21,7 @@ Aulas disponíveis:
 - git checkout --force navigation2
 - git checkout --force toolbar
 - git checkout --force flatlist1
+- git checkout --force flatlist2
 
 
 --------------------
@@ -34,3 +35,4 @@ Aulas disponíveis:
 * **navigation2** - Adiciona o Drawer e Bottom Navigation do React Navigation
 * **toolbar** - Adicionado nossa toolbar com botão para abrir o menu e o botão voltar
 * **flatlist1** - Iniciando a montar o componente que será usado no flatlist
+* **flatlist2** - Aplicando o Flatlist
