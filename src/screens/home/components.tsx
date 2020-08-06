@@ -39,7 +39,7 @@ const styleIT = StyleSheet.create({
     invisivel: {
         flexDirection: "row",
         justifyContent: 'flex-end',
-        heigth: '100%'
+        height: '100%'
     },
     btn: { color: 'white' },
     btnEditar: {backgroundColor: 'blue', width:60, borderRadius:0},
