@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import { useNavigation, useRoute, DrawerActions } from '@react-navigation/native';
 import { Toolbar } from '../../components/toolbar';
 import { Fab } from '../../components/fab';
@@ -15,6 +15,16 @@ export function HomeScreen (props: any) {
       new Tarefa("Tarefa 2", "01/01/2020", "2"),
       new Tarefa("Tarefa 3", "01/01/2021", "3"),
     ])
+
+    //Exclui uma tarefa pelo ID
+    const excluir = (id:any) => {
+      Alert.alert("Excluir Tarefa", "Deseja realmente excluir essa tarefa?", [
+        {text: 'Sim', onPress: () => {
+          console.log('Excluindo item');
+        }},
+        {text: 'Não'}
+      ])
+    }
 
     
     //@ts-ignore
@@ -32,7 +42,7 @@ export function HomeScreen (props: any) {
               <ItemTarefa 
                   tarefa={item} 
                   onEditar={(tarefa) => nav.navigate('tarefa', {tarefa})}
-                  onExcluir={(id) => console.log(id)}/> 
+                  onExcluir={excluir}/> 
             )} />
           <Fab onPress={() => nav.navigate('tarefa')}/>
       </View>

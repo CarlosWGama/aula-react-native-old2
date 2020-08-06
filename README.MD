@@ -22,6 +22,7 @@ Aulas disponíveis:
 - git checkout --force toolbar
 - git checkout --force flatlist1
 - git checkout --force flatlist2
+- git checkout --force modal
 
 
 --------------------
@@ -36,3 +37,4 @@ Aulas disponíveis:
 * **toolbar** - Adicionado nossa toolbar com botão para abrir o menu e o botão voltar
 * **flatlist1** - Iniciando a montar o componente que será usado no flatlist
 * **flatlist2** - Aplicando o Flatlist
+* **modal** - Adicionado Toast, Alert e Modal

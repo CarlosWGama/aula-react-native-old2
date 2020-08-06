@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, TextInput, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, TextInput, ActivityIndicator, ToastAndroid, Platform, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import { InputRound } from './components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
+import { AlertCustom, AlertInput } from '../../components/alert-custom';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export interface LoginProps {}
 
@@ -13,6 +15,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
 
     const nav = useNavigation();
     const [erro, setErro] = useState('');
+    const [modalAberto, setModalAberto] = useState(false);
 
     //Função para Logar
     const logar = async (dados) => {
@@ -22,9 +25,21 @@ export default function LoginFuncaoScreen(props: LoginProps) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         if (dados.email == 'teste@teste.com' && dados.senha == '123456')
-            nav.navigate('app'); //Caso seja uma subnavegação
-        else
-            setErro("Email ou senha incorreta")
+            nav.navigate('app'); 
+        else {
+            if (Platform.OS == "android")
+                ToastAndroid.show("Email ou senha incorreta", 3000);
+            else
+                //Alert.alert('Erro', 'Email ou senha incorreta');
+                setErro("Email ou senha incorreta");
+
+        }
+    }
+
+    //Cadastra um novo usuário
+    const cadastrar = async (dados) => {
+        console.log(dados);
+        setModalAberto(false);
     }
 
      return (<ImageBackground source={require('./../../../assets/imgs/background.png')}
@@ -57,7 +72,31 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                     )}
                 </Formik>
                 {/* FIM FORMULÁRIO */}
-                <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>
+                <TouchableOpacity onPress={() => {setModalAberto(true); console.log('aa')}}>
+                    <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>
+                </TouchableOpacity>
+
+
+                <Formik
+                    initialValues={{email:'', senha:''}}
+                    onSubmit={cadastrar}
+                    validationSchema={Yup.object().shape({
+                        email: Yup.string().email('Campo precisa ser um email').required('Email obrigatório'),
+                        senha: Yup.string().min(4, 'Mínimo 4 caracteres').required('Senha obrigatória')
+                    })}
+                >
+                    {({handleSubmit, handleChange, handleBlur, touched, errors}) => (
+                        <AlertCustom 
+                            onCancelar={() => setModalAberto(false)}
+                            onConfirmar={handleSubmit}
+                            visivel={modalAberto}
+                            titulo="Novo usuário">
+                            <Text>Informe os dados do usuário</Text>
+                            <AlertInput placeholder="Digite seu email" onChangeText={handleChange('email')} onBlur={handleBlur('email')} touched={touched.email} error={errors.email} />
+                            <AlertInput placeholder="Digite sua senha" onChangeText={handleChange('senha')} onBlur={handleBlur('senha')} touched={touched.senha} error={errors.senha}  senha noBorder/>
+                        </AlertCustom>        
+                    )}
+                </Formik>
 
             </View>
 
