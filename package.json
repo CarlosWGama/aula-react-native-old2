@@ -29,7 +29,9 @@
     "react-native-screens": "~2.9.0",
     "react-native-swipe-list-view": "^3.2.3",
     "react-native-web": "~0.11.7",
-    "yup": "^0.29.2"
+    "yup": "^0.29.2",
+    "@react-native-community/netinfo": "5.9.2",
+    "expo-image-picker": "~8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

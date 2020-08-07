@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, TextInput, ActivityIndicator, ToastAndroid, Platform, Alert } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, TextInput, ActivityIndicator, ToastAndroid, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button, Input } from 'react-native-elements';
 import { InputRound } from './components';
@@ -71,6 +71,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                         </View>
                     )}
                 </Formik>
+
                 {/* FIM FORMULÁRIO */}
                 <TouchableOpacity onPress={() => {setModalAberto(true); console.log('aa')}}>
                     <Text style={styles.cadastrar}>Não possui conta? Clique aqui para se cadastrar</Text>

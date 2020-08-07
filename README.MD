@@ -38,3 +38,4 @@ Aulas disponíveis:
 * **flatlist1** - Iniciando a montar o componente que será usado no flatlist
 * **flatlist2** - Aplicando o Flatlist
 * **modal** - Adicionado Toast, Alert e Modal
+* **camera** - Adicionado a camera
