@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
 import { AlertCustom, AlertInput } from '../../components/alert-custom';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { UsuarioProvider } from '../../providers/usuarios';
 
 export interface LoginProps {}
 
@@ -21,10 +22,10 @@ export default function LoginFuncaoScreen(props: LoginProps) {
     const logar = async (dados) => {
         setErro(""); //Limpa o erro
         
-        //Aguarda 1 segundo
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        //Busca
+        const resposta = await UsuarioProvider.logar(dados.email, dados.senha);
         
-        if (dados.email == 'teste@teste.com' && dados.senha == '123456')
+        if (resposta)
             nav.navigate('app'); 
         else {
             if (Platform.OS == "android")
@@ -32,13 +33,16 @@ export default function LoginFuncaoScreen(props: LoginProps) {
             else
                 //Alert.alert('Erro', 'Email ou senha incorreta');
                 setErro("Email ou senha incorreta");
-
         }
     }
 
     //Cadastra um novo usuário
     const cadastrar = async (dados) => {
-        console.log(dados);
+        const resposta = await UsuarioProvider.cadastrar(dados);
+        if (resposta) 
+            ToastAndroid.show('Cadastrado com sucesso', 3000);
+        else
+            ToastAndroid.show('Falha ao cadastrar usuário', 3000);
         setModalAberto(false);
     }
 
@@ -79,7 +83,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
 
 
                 <Formik
-                    initialValues={{email:'', senha:''}}
+                    initialValues={{email:'', senha:'', nome: ''}}
                     onSubmit={cadastrar}
                     validationSchema={Yup.object().shape({
                         email: Yup.string().email('Campo precisa ser um email').required('Email obrigatório'),
@@ -93,6 +97,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                             visivel={modalAberto}
                             titulo="Novo usuário">
                             <Text>Informe os dados do usuário</Text>
+                            <AlertInput placeholder="Digite seu nome" onChangeText={handleChange('nome')} onBlur={handleBlur('nome')} touched={touched.nome} error={errors.nome} />
                             <AlertInput placeholder="Digite seu email" onChangeText={handleChange('email')} onBlur={handleBlur('email')} touched={touched.email} error={errors.email} />
                             <AlertInput placeholder="Digite sua senha" onChangeText={handleChange('senha')} onBlur={handleBlur('senha')} touched={touched.senha} error={errors.senha}  senha noBorder/>
                         </AlertCustom>        
