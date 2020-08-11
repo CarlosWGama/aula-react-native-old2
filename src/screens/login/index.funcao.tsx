@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
 import { AlertCustom, AlertInput } from '../../components/alert-custom';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as firebase from 'firebase';
 
 export interface LoginProps {}
 
@@ -21,24 +22,25 @@ export default function LoginFuncaoScreen(props: LoginProps) {
     const logar = async (dados) => {
         setErro(""); //Limpa o erro
         
-        //Aguarda 1 segundo
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        if (dados.email == 'teste@teste.com' && dados.senha == '123456')
-            nav.navigate('app'); 
-        else {
-            if (Platform.OS == "android")
-                ToastAndroid.show("Email ou senha incorreta", 3000);
-            else
-                //Alert.alert('Erro', 'Email ou senha incorreta');
-                setErro("Email ou senha incorreta");
-
-        }
+        //Realiza autenticação
+        await firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
+            .then(() => nav.navigate('app'))
+            .catch((erro) => {
+                console.log(erro);
+                if (Platform.OS == "android")
+                    ToastAndroid.show("Email ou senha incorreta", 3000);
+                else
+                    //Alert.alert('Erro', 'Email ou senha incorreta');
+                    setErro("Email ou senha incorreta");
+            })
     }
 
     //Cadastra um novo usuário
     const cadastrar = async (dados) => {
         console.log(dados);
+        firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)
+            .then(() => ToastAndroid.show("Usuário criado com sucesso", 3000))
+            .catch((erro) => ToastAndroid.show("Não foi possível criar a conta", 3000))
         setModalAberto(false);
     }
 

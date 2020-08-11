@@ -23,6 +23,9 @@ Aulas disponíveis:
 - git checkout --force flatlist1
 - git checkout --force flatlist2
 - git checkout --force modal
+- git checkout --force camera
+- git checkout --force webservice
+- git checkout --force firebase_login
 
 
 --------------------
@@ -39,3 +42,5 @@ Aulas disponíveis:
 * **flatlist2** - Aplicando o Flatlist
 * **modal** - Adicionado Toast, Alert e Modal
 * **camera** - Adicionado a camera
+* **webservice** - Realizando conexão com WebService
+* **firebase_login** - Adicionando o Firebase e autenticação com o login

@@ -1,7 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/screens/login/index.funcao';
 import { NavegacaoPrincipal } from './src/navigations';
+import firebase from 'firebase';
+import { firebaseConfig } from './src/config/firebase-config';
+
+//Configura o Firebase
+firebase.initializeApp(firebaseConfig)
 
 export default function App() {
   return (<NavegacaoPrincipal/>);
