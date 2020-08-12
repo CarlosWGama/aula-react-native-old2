@@ -6,21 +6,24 @@ import { Fab } from '../../components/fab';
 import { ItemTarefa } from './components';
 import Tarefa from '../../models/tarefa';
 import { FlatList } from 'react-native-gesture-handler';
+import { TarefaProvider } from '../../providers/tarefa';
 
 export function HomeScreen (props: any) {
+
+    //Ignora alerta do firebase
+    console.disableYellowBox = true;
+
     const nav = useNavigation();
     const route = useRoute();
-    const [tarefas, setTarefas] = React.useState([
-      new Tarefa("Tarefa 1", "01/01/2019", "1"),
-      new Tarefa("Tarefa 2", "01/01/2020", "2"),
-      new Tarefa("Tarefa 3", "01/01/2021", "3"),
-    ])
+    const [tarefas, setTarefas] = React.useState<Tarefa[]>([])
+
+    TarefaProvider.buscarTodos().then(resultados => setTarefas(resultados));
 
     //Exclui uma tarefa pelo ID
     const excluir = (id:any) => {
       Alert.alert("Excluir Tarefa", "Deseja realmente excluir essa tarefa?", [
         {text: 'Sim', onPress: () => {
-          console.log('Excluindo item');
+          TarefaProvider.excluir(id);
         }},
         {text: 'Não'}
       ])

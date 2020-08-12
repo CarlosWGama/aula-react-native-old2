@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Image, Button, StyleSheet, Platform } from 'react-native';
 import { Toolbar } from '../../components/toolbar';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Input } from 'react-native-elements';
 import { Formik } from 'formik';
@@ -11,6 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Tarefa from '../../models/tarefa';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import { TarefaProvider } from '../../providers/tarefa';
 
 export function TarefaScreen (props: any) {
   const route = useRoute();
@@ -20,6 +21,7 @@ export function TarefaScreen (props: any) {
   //@ts-ignore
   const tarefa: Tarefa = (route.params?.tarefa == null ? {id: null, descricao: '', data: moment().format('DD/MM/YYYY')} : route.params?.tarefa)
   const titulo = (tarefa.id == null ? 'Cadastrar ' : 'Editar ') + "Tarefa"; 
+  const nav = useNavigation();
   
   //Tirar foto
   const abrirCamera = async (setFieldValue) => {
@@ -42,6 +44,11 @@ export function TarefaScreen (props: any) {
   //Salvar
   const salvar = async (dados) => {
     console.log(dados);
+    if (!dados.id) 
+      TarefaProvider.cadastrar(dados);
+    else
+      TarefaProvider.editar(dados);
+    nav.goBack();
   }
 
   

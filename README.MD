@@ -26,6 +26,8 @@ Aulas disponíveis:
 - git checkout --force camera
 - git checkout --force webservice
 - git checkout --force firebase_login
+- git checkout --force firebase_realtime
+- git checkout --force firebase_firestore
 
 
 --------------------
@@ -44,3 +46,5 @@ Aulas disponíveis:
 * **camera** - Adicionado a camera
 * **webservice** - Realizando conexão com WebService
 * **firebase_login** - Adicionando o Firebase e autenticação com o login
+* **firebase_realtime** - Usa o banco Real Time Database
+* **firebase_firestore** - Usa o banco Firestore
