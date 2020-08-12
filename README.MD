@@ -28,6 +28,7 @@ Aulas disponíveis:
 - git checkout --force firebase_login
 - git checkout --force firebase_realtime
 - git checkout --force firebase_firestore
+- git checkout --force admob
 
 
 --------------------
@@ -48,3 +49,4 @@ Aulas disponíveis:
 * **firebase_login** - Adicionando o Firebase e autenticação com o login
 * **firebase_realtime** - Usa o banco Real Time Database
 * **firebase_firestore** - Usa o banco Firestore
+* **admob** - Adicionado propaganda

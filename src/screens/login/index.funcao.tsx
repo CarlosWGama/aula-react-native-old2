@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AlertCustom, AlertInput } from '../../components/alert-custom';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as firebase from 'firebase';
+import { AdMobBanner, AdMobInterstitial, AdMobRewarded  } from 'expo-ads-admob';
 
 export interface LoginProps {}
 
@@ -100,6 +101,42 @@ export default function LoginFuncaoScreen(props: LoginProps) {
                         </AlertCustom>        
                     )}
                 </Formik>
+
+
+                {/* PROPAGANDA TELA CHEIA */}
+                <Button title="Exibir Propaganda"
+                  type="outline"
+                  onPress={ async () => {
+                    //ID da propanda
+                    AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); 
+                    //Seta o ID do dispositivo que é usado para teste, para não contabilizar a propaganda
+                    AdMobInterstitial.setTestDeviceID('EMULATOR')
+                    //Solicita uma propaganda
+                    await AdMobInterstitial.requestAdAsync();
+                    //Exibe a propaganda
+                    await AdMobInterstitial.showAdAsync();
+                  }}
+                />
+
+                {/* PROPAGANDA COM DURAÇÃO */}
+                <Button title="Exibir Propaganda com Duração"
+                  onPress={ async () => {
+                    //ID da propanda
+                    AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/8691691433'); 
+                    //Seta o ID do dispositivo que é usado para teste, para não contabilizar a propaganda
+                    AdMobRewarded.setTestDeviceID('EMULATOR')
+                    //Solicita uma propaganda
+                    await AdMobRewarded.requestAdAsync();
+                    //Exibe a propaganda (Com tempo para o usuário)
+                    await AdMobRewarded.showAdAsync();
+                  }}
+                />
+
+                  {/* PROPAGANDA POR BANNER */}
+                <AdMobBanner 
+                  bannerSize="smartBannerPortrait"
+                  adUnitID="ca-app-pub-3940256099942544/6300978111"
+                />
 
             </View>
 
