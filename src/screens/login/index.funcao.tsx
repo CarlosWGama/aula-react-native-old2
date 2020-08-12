@@ -18,6 +18,7 @@ export default function LoginFuncaoScreen(props: LoginProps) {
     const [erro, setErro] = useState('');
     const [modalAberto, setModalAberto] = useState(false);
 
+
     //Função para Logar
     const logar = async (dados) => {
         setErro(""); //Limpa o erro
