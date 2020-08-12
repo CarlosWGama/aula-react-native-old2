@@ -6,7 +6,7 @@ import { Fab } from '../../components/fab';
 import { ItemTarefa } from './components';
 import Tarefa from '../../models/tarefa';
 import { FlatList } from 'react-native-gesture-handler';
-import { TarefaProvider } from '../../providers/tarefa';
+import { useTarefasProvider } from '../../providers/tarefa';
 
 export function HomeScreen (props: any) {
 
@@ -16,14 +16,14 @@ export function HomeScreen (props: any) {
     const nav = useNavigation();
     const route = useRoute();
     const [tarefas, setTarefas] = React.useState<Tarefa[]>([])
-
-    TarefaProvider.buscarTodos().then(resultados => setTarefas(resultados));
+    const tarefasProvider = useTarefasProvider();
+    tarefasProvider.buscarTodos().then(resultados => setTarefas(resultados));
 
     //Exclui uma tarefa pelo ID
     const excluir = (id:any) => {
       Alert.alert("Excluir Tarefa", "Deseja realmente excluir essa tarefa?", [
         {text: 'Sim', onPress: () => {
-          TarefaProvider.excluir(id);
+          tarefasProvider.excluir(id);
         }},
         {text: 'Não'}
       ])

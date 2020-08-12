@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Tarefa from '../models/tarefa';
 import firebase from 'firebase';
 import 'firebase/firestore'; //Não precisa no Ionic ou Web
@@ -68,4 +69,4 @@ class TarefasProvider {
     }
 }
   
-export const TarefaProvider = new TarefasProvider()
+export const useTarefasProvider = () => new TarefasProvider()

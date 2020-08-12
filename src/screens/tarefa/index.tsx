@@ -11,12 +11,13 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Tarefa from '../../models/tarefa';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import { TarefaProvider } from '../../providers/tarefa';
+import { useTarefasProvider } from '../../providers/tarefa';
 
 export function TarefaScreen (props: any) {
   const route = useRoute();
   const [exibirCalendario, setExibirCalendario] = React.useState(false);
-  
+  const tarefasProvider = useTarefasProvider();
+
   //recupera a tarefa passada ou inicializa
   //@ts-ignore
   const tarefa: Tarefa = (route.params?.tarefa == null ? {id: null, descricao: '', data: moment().format('DD/MM/YYYY')} : route.params?.tarefa)
@@ -45,9 +46,9 @@ export function TarefaScreen (props: any) {
   const salvar = async (dados) => {
     console.log(dados);
     if (!dados.id) 
-      TarefaProvider.cadastrar(dados);
+      tarefasProvider.cadastrar(dados);
     else
-      TarefaProvider.editar(dados);
+      tarefasProvider.editar(dados);
     nav.goBack();
   }
 
