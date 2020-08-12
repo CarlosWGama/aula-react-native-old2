@@ -29,6 +29,7 @@ Aulas disponíveis:
 - git checkout --force firebase_realtime
 - git checkout --force firebase_firestore
 - git checkout --force admob
+- git checkout --force push_notification
 
 
 --------------------
@@ -50,3 +51,4 @@ Aulas disponíveis:
 * **firebase_realtime** - Usa o banco Real Time Database
 * **firebase_firestore** - Usa o banco Firestore
 * **admob** - Adicionado propaganda
+* **push_notification** - Adicionado propaganda
