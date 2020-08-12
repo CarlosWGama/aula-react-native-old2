@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Tarefa from '../models/tarefa';
 import * as firebase from 'firebase';
 import 'firebase/database';
@@ -63,5 +64,5 @@ class TarefasProvider {
     }
 }
 
-export const TarefaProvider = new TarefasProvider();
+export const useTarefasProvider = () => new TarefasProvider();
   
